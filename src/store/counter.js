@@ -3,6 +3,8 @@ import { makeAutoObservable } from 'mobx';
 class Counter {
   count = 0; // значение по умолчанию
 
+  timer = 60;
+
   constructor() {
     //автоматическое отслеживание изменений в сторе
     makeAutoObservable(this);
@@ -16,6 +18,11 @@ class Counter {
   decrement() {
     this.count = this.count - 1;
     // console.log('decrement,', this.count);
+  }
+
+  //computed свойство. Вызывается только если какой-то из этих параметров изменился
+  get total() {
+    return `Counter + timer = ${this.count + this.timer}`;
   }
 }
 
